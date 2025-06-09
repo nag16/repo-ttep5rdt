@@ -1,0 +1,37 @@
+{
+  "name": "my-eth-starter",
+  "author": "@nezz0746",
+  "license": "MIT",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "build": "turbo run build",
+    "kit:codegen": "yarn workspace web-kit run codegen",
+    "chain": "cd apps/contracts && yarn run chain",
+    "dev": "turbo run dev --parallel",
+    "deploy:local": "yarn workspace contracts run deploy:local && yarn workspace wagmi-config run generate && yarn workspace subgraph run deploy:local && yarn run kit:codegen",
+    "deploy:testnets": "yarn workspace contracts run deploy:testnets && yarn workspace wagmi-config run generate  && yarn workspace subgraph run deploy:testnets && yarn run kit:codegen",
+    "lint": "turbo run lint",
+    "test": "turbo run test",
+    "test:force": "turbo run test --force",
+    "add:web": "yarn workspace web add",
+    "add:kit": "yarn workspace web-kit add",
+    "add:ui": "yarn workspace web-ui add",
+    "add:wagmi": "yarn workspace wagmi-config add",
+    "add:subgraph": "yarn workspace subgraph add",
+    "add:shared": "yarn workspace shared-config add",
+    "postinstall": "npx patch-package"
+  },
+  "workspaces": [
+    "packages/*",
+    "apps/*"
+  ],
+  "devDependencies": {
+    "turbo": "^1.10.16"
+  },
+  "engines": {
+    "npm": ">=7.0.0",
+    "node": ">=14.0.0"
+  },
+  "packageManager": "yarn@1.22.4"
+}
